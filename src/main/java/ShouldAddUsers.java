@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -5,12 +6,20 @@ import java.util.Scanner;
 public class ShouldAddUsers {
     public static void addUsers() throws IOException {
         Scanner s = new Scanner(System.in);
-
+        File f1 = new File("data.txt");
         FileWriter fw = new FileWriter("data.txt", true);
 
         //phone
         System.out.print("Enter Phone No.: ");
         String phone = s.next();
+        Scanner sc = new Scanner(f1);
+        while (sc.hasNextLine()) {
+            String t = sc.nextLine();
+            if (phone.equals(t)) {
+                System.out.println("User already exists");
+                return;
+            }
+        }
         fw.write(phone + "\n");
         System.out.println();
         //First name
