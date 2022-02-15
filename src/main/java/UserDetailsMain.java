@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class UserDetailsMain {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         File fl = new File("data.txt");
         try {
