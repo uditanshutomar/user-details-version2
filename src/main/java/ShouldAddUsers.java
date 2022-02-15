@@ -10,6 +10,7 @@ public class ShouldAddUsers {
         FileWriter fw = new FileWriter("data.txt", true);
 
         //phone
+        /*
         System.out.print("Enter Phone No.: ");
         String phone = s.next();
         Scanner sc = new Scanner(f1);
@@ -22,6 +23,31 @@ public class ShouldAddUsers {
         }
         fw.write(phone + "\n");
         System.out.println();
+        */
+        String phoneregex = "^[0-9]{10}$";
+        boolean checkphone = false;
+
+        while (checkphone == false) {
+            System.out.print("Enter Phone No.: ");
+            String phone = s.next();
+            boolean result = phone.matches(phoneregex);
+            if (result == false) {
+                System.out.println("Please enter a valid Phone No.");
+            } else {
+                checkphone = true;
+                Scanner sc = new Scanner(f1);
+                while (sc.hasNextLine()) {
+                    String t = sc.nextLine();
+                    if (phone.equals(t)) {
+                        System.out.println("User already exists");
+                        return;
+                    }
+                }
+                fw.write(phone + "\n");
+            }
+        }
+
+        System.out.println();
         //First name
         System.out.print("Enter first name: ");
         String firstname = s.next();
@@ -33,13 +59,27 @@ public class ShouldAddUsers {
         fw.write(lastname + " ");
         System.out.println();
         //Email
-        System.out.print("Enter email: ");
-        String email = s.next();
-        fw.write(email + " ");
+
+        String emailregex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+        boolean check = false;
+
+        while (check == false) {
+            System.out.print("Enter email: ");
+            String email = s.next();
+            boolean result = email.matches(emailregex);
+            if (result == false) {
+                System.out.println("Please enter a valid Email");
+            } else {
+                check = true;
+                fw.write(email + " ");
+            }
+        }
+
         System.out.println();
         fw.write("\n");
         System.out.println("User Data Saved Successfully");
         fw.close();
+
 
     }
 }
